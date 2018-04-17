@@ -1,16 +1,88 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Биография</title>
+        
+        <!-- css-->
+        <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/css/style.css" rel="stylesheet">
+
+        <!-- библиотеки-->
+        <script src="lib/js/jquery.min.js"></script>
+        <script src="lib/js/bootstrap.min.js"></script>
+        
+        <!-- service -->
+        <script src="service/ScientistService.js"></script>
+        <script src="service/BiographyService.js"></script>
+        <!-- controllers -->
+        <script src="controllers/ScientistController.js"></script>
+        <script src="controllers/BiographyController.js"></script>
+
+        <!-- создает события scientistClick и biographyClick, которые потом загружаются из контроллера html текст-->
+        <script>
+            var bio = "";
+            function scientistClick(id)
+            {
+                var controller = new BiographyController();
+                controller.getBiographyByScientistIdViewList(id);
+            }
+            function biographyClick(id)
+            {
+                
+                //переход с передачей параметров на get;
+                document.location.replace("/UppBio/view/biography.html?id="+id);
+            }
+        </script>
+
+
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body class="container">
+
+
+        <div id="header" class="container">
+            <!-- Fixed navbar -->
+            <div class="navbar navbar-default navbar-static-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">                        
+                        <a class="navbar-brand" href="">Scientist</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="">Главная</a></li>
+                            <li class="active"><a href="">О Сервисе</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="body" class="container">
+            <div class="row">
+                <div id="scientists" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <!--место для загрузки ученых-->
+                </div>
+                <div id="biography" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                    <!--место для загрузки биографий-->
+                </div>                
+            </div>
+        </div> 
+
+
+        <!--скрипт активируется при загрузке страницы-->
+        <script>
+            $(window).load(function () {
+
+                var controller = new ScientistController();  // создание объекта ScientistController
+                controller.getAllScientistViewButtons(); //вызов его функции getAllScientistViewButtons()
+
+
+                var controllerBiography = new BiographyController(); // создание объекта BiographyController()
+                controllerBiography.getBiographyByScientistIdViewList(1); // вызов биографии 1ого ученого в <div id="biography" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            });
+        </script>
     </body>
 </html>
