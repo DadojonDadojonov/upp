@@ -59,38 +59,38 @@ public class ScientistDalTest {
         ScientistDal dal = new ScientistDal();// создание объекта ScientistDal
         
         /**
-         * Тест Insert в таблицу scientist
+         * Тест Insert в таблицу scientists
          */
         //Создание нового объекта Scientist 
         List<Biography> biographyList = new ArrayList<>(); // заглушка
         Scientist scientist = new Scientist(11,"Ломоносов Михаил Васильевич", biographyList); 
-        // Переменная INSERT показывает количество добавленных строк в таблицу scientist
+        // Переменная INSERT показывает количество добавленных строк в таблицу scientists
         // dal.insert(X) добавляет в таблицу данные объекта "X"
         int INSERT =  dal.insert(scientist);
         //Проверка на INSERT == 1
         assertTrue(INSERT == 1);
         
         /**
-         * Тест Update в таблицу  scientist
+         * Тест Update в таблицу  scientists
          */
         scientist = new Scientist(11,"Альберт Эйнштейн", biographyList);  // изменим объект        
-        // Переменная UPDATE показывает количество обновленных строк в таблице scientist
+        // Переменная UPDATE показывает количество обновленных строк в таблице scientists
         // dal.update(x) обновляет данные в таблице  scientist объектом x с id = x.getID()
         int UPDATE =  dal.update(scientist);
         //Проверка на DUPDATE == 1
         assertTrue(UPDATE == 1);
         
         /**
-         * Тест DeleteById в таблице scientist
+         * Тест DeleteById в таблице scientists
          */
-        // Переменная DELETE показывает количество удаленных строк в таблице scientist(в данном случае либо 0, либо 1)
-        // dal.deleteById(x) удаляет из таблицы scientist запись с id = x
+        // Переменная DELETE показывает количество удаленных строк в таблице scientists(в данном случае либо 0, либо 1)
+        // dal.deleteById(x) удаляет из таблицы scientists запись с id = x
         int DELETE =  dal.deleteById(11);
         //Проверка на DELETE == 1
         assertTrue(DELETE == 1);        
     }     
     
-    /* Возвращает автоинкремент id в таблице scientist к 10:
+    /* Возвращает автоинкремент id в таблице scientists к 10:
      * ALTER TABLE scientists AUTO_INCREMENT = 10;
      */
 }

@@ -1,4 +1,4 @@
-package bio.dal;
+package bio.controllers;
 
 import java.util.Date;
 import java.util.List;
@@ -7,22 +7,22 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /*
- * Тестирование класса BiographyDal.java
+ * Тестирование класса BiographyController.java
  */
-public class BiographyDalTest {
+public class BiographyControllerTest {
 
-    public BiographyDalTest() {
+    public BiographyControllerTest() {
     }
 
 
     /*
-     * Тест SelectAll(), который должен вернуть все биографии из БД
+     * Тест GetAllBiographies(), который должен вернуть все биографии из БД
      */
     @Test
-    public void testSelectAll() {
-        BiographyDal instance = new BiographyDal(); // Создаем сам объект класса Dal
-        // Создаем лист, куда заносятся результаты функции selectAll(), т.е. объекты класса Biography.java
-        List<Biography> result = instance.selectAll();
+    public void testGetAllBiographies() {
+        BiographyController instance = new  BiographyController(); // Создаем сам объект класса BiographyController
+        // Создаем лист, куда заносятся результаты функции getAllBiographies() из BiographyController, т.е. объекты класса Biography.java
+        List<Biography> result = instance.getAllBiographies();
         // Тест пройден, если результат не равен null и размер листа стал больше 0
         assertTrue(result != null && result.size() > 0);
         // Вывод для каждого элемента листа функции toString()(она в классе Biography.java).
@@ -32,36 +32,35 @@ public class BiographyDalTest {
     }
 
     /*
-     * Тест SelectById(), который должен вернуть биографию по id
+     * Тест getBiography(), который должен вернуть биографию по id
      */
     @Test
-    public void testSelectById() {
-        int id = 1; // id сбиографии
-        BiographyDal instance = new BiographyDal(); // создаем объект BiographyDal
+    public void testGetBiography() {
+        int id = 1; // id биографии
+        BiographyController instance = new BiographyController(); // создаем объект BiographyController
         /*
-         * selectById(id) возвращает объект Biography по id( получает из БД и 
-         * при помощи маппера biography.xml конвертирует в объект класса Biography)
+         * getBiography(id) возвращает объект Biography по id( получает от слоя BiographyDal)
          */
-        Biography result = instance.selectById(id);
+        Biography result = instance.getBiography(id);
         // Тест пройден, если результат не равен null и id == 1
         assertTrue(result != null && result.getId() == 1);
     }
 
     /*
      * Тест testInsertUpdateDeleteById(), который должен последовательно:
-     * 1) Добавить(insert) биографию в БД;
-     * 2) Обновить биографию из п.1;
-     * 3) Удалить ее.
+     * 1) Добавить(insert) биографии в БД;
+     * 2) Обновить биографии из п.1;
+     * 3) Удалить его.
      */
     @Test
-    public void testInsertUpdateDeleteById() {
-        BiographyDal dal = new BiographyDal();// создание объекта BiographyDal
-
+    public void testInsertUpdateDeleteById() {        
+        BiographyController controller = new BiographyController();// создание объекта BiographyController
+        
         /**
          * Тест Insert в таблицу s_biography
          */
         //Создание нового объекта Biography 
-        Biography biography = new Biography(
+       Biography biography = new Biography(
                 11,
                 "Российская Империя",
                 "Ломоносов Михаил Васильевич (1711/1765) — русский писатель, ученый, поэт, общественный деятель. Получив всестороннее образование (в том числе и в зарубежных учебных заведениях), Ломоносов вел разнообразную исследовательскую деятельность в Российской академии наук. Именно благодаря Л. была создана химическая лаборатория, введены в систему образования новые дисциплины, открыты новые отрасли наук. Литературная деятельность Ломоносова тесно соприкасалась с научной.",
@@ -70,15 +69,15 @@ public class BiographyDalTest {
                 11
         );
         // Переменная INSERT показывает количество добавленных строк в таблицу s_biography
-        // dal.insert(X) добавляет в таблицу данные объекта "X"
-        int INSERT = dal.insert(biography);
+        // controller.insert(X) добавляет в таблицу данные объекта "X"
+        int INSERT =  controller.insertBiography(biography);
         //Проверка на INSERT == 1
         assertTrue(INSERT == 1);
-
+        
         /**
          * Тест Update в таблицу s_biography
          */
-        // изменим объект (тут поменяли bio)
+        // изменим объект      
         biography = new Biography(
                 11,
                 "Российская Империя",
@@ -88,21 +87,21 @@ public class BiographyDalTest {
                 11
         );
         // Переменная UPDATE показывает количество обновленных строк в таблице s_biography
-        // dal.update(x) обновляет данные в таблице s_biography объектом x с id = x.getID()
-        int UPDATE = dal.update(biography);
+        // controller.update(x) обновляет данные в таблице biography объектом x с id = x.getID()
+        int UPDATE =  controller.updateBiography(biography);
         //Проверка на DUPDATE == 1
         assertTrue(UPDATE == 1);
-
+        
         /**
          * Тест DeleteById в таблице s_biography
          */
         // Переменная DELETE показывает количество удаленных строк в таблице s_biography(в данном случае либо 0, либо 1)
-        // dal.deleteById(x) удаляет из таблицы s_biography запись с id = x
-        int DELETE = dal.deleteById(11);
+        // controller.deleteById(x) удаляет из таблицы s_biography запись с id = x
+        int DELETE =  controller.deleteBiography(11);
         //Проверка на DELETE == 1
-        assertTrue(DELETE == 1);
-    }
-
+        assertTrue(DELETE == 1);        
+    }     
+    
     /* Возвращает автоинкремент id в таблице s_biography к 10:
      * ALTER TABLE s_biography AUTO_INCREMENT = 10;
      */
