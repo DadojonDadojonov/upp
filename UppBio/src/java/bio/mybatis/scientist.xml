@@ -5,7 +5,7 @@
     
 <mapper namespace="scientist">
     
-    <resultMap id = "result" type = "stihi.model.Scientist"> 
+    <resultMap id = "result" type = "bio.model.Scientist"> 
         <result property = "id_Scientist" column = "id_Scientist"/> 
         <result property = "name" column = "name"/> 
         <collection property="biography" javaType="List" ofType="bio.model.Biography" column="id_Scientist"  select="selectBiography"/>
