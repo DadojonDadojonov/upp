@@ -28,10 +28,10 @@
                 <div class="container">                    
                     <a class="navbar-brand" href="http://localhost:8084/UppBio/">Биография</a>
                     <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="http://localhost:8084/UppBio/">Главная</a></li>    
-                    </ul>
-                </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="http://localhost:8084/UppBio/">Главная</a></li>    
+                        </ul>
+                    </div>
                 </div>                
             </div>
         </div>
@@ -40,11 +40,11 @@
         <div id="body" class="container">
             <div class="row">
                 <div id="oneBio" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    
-                       
-                       <!-- место для биографии-->
-                        
-                    
+
+
+                    <!-- место для биографии-->
+
+
                 </div>
             </div>
         </div> 
@@ -65,7 +65,7 @@
                 return vars;
             }
             var idBio = getUrlVars()["id"];// получаем параметр id стихотворения из адресной строки
-            
+
             // Используем функцию при загрузке страницы, которая вставляет стихотворение по его id в элемент этой html страницы, где у самого элемента id="oneBio"
             $(window).load(function () {
                 var controllerBiography = new BiographyController(); // создание объекта BiographyController()
