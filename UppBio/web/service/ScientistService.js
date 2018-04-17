@@ -7,9 +7,9 @@ class ScientistService
      */
     
     // возвращает всех ученых
-    getAllScientistService() {
+    getAllScientistsService() {
         // запрос к серверу GetAllScientists
-
+        
         var request = new XMLHttpRequest(); // Объект XMLHttpRequest (или, сокращенно, XHR) дает возможность браузеру делать HTTP-запросы к серверу без перезагрузки страницы.
         request.open('GET', '/UppBio/getAllScientists', false); // открывает GET запрос и по какой ссылке обращаться, false - синхронный запрос(ждет загрузки данных)
         request.send(); // отправить запрос
@@ -18,7 +18,7 @@ class ScientistService
         if (request.status == 200)
         {
             /* request.responseText - возвращает текст ответа; JSON.parse() - парсит полученную json строку в массив */
-            var scientists = JSON.parse(request.responseText);
+            var scientists = JSON.parse(request.responseText);            
             return scientists;
         } 
         else //иначе выводит ошибку

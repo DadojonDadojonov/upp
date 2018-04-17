@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Биография</title>
-        
+
         <!-- css-->
         <link href="lib/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/css/style.css" rel="stylesheet">
@@ -14,7 +14,7 @@
         <!-- библиотеки-->
         <script src="lib/js/jquery.min.js"></script>
         <script src="lib/js/bootstrap.min.js"></script>
-        
+
         <!-- service -->
         <script src="service/ScientistService.js"></script>
         <script src="service/BiographyService.js"></script>
@@ -32,9 +32,9 @@
             }
             function biographyClick(id)
             {
-                
+
                 //переход с передачей параметров на get;
-                document.location.replace("/UppBio/view/biography.html?id="+id);
+                document.location.replace("/UppBio/view/biography.html?id=" + id);
             }
         </script>
 
@@ -67,9 +67,19 @@
                 </div>
                 <div id="biography" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                     <!--место для загрузки биографий-->
+                    <h3>Достижения науки не стоят на месте благодаря деятельности великих ученых. Выдающиеся ученые совершают новые открытия, формируют картину мира. В этом разделе собраны биографии известных ученых, исследователей.</h3>
+                    <h3>Величайшие ученые биологических наук, среди которых особо стоит отметить немецких ученых, изучают жизнь живых существ. Русские ученые математических наук сделали громадный вклад в развитие данного направления. </h3>
+                    <h3>Знаменитые ученые Японии прославились разработками в области искусственного интеллекта. Американские ученые стали первыми создателями компьютерных сетей. У нас представлены биографии ученых всех государств и отраслей наук.</h3>
                 </div>                
-            </div>
+            </div>            
         </div> 
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="footer" class="container">                           
+            <center> <p>Весь материал взят с сайта <a href="http://obrazovaka.ru/category/science">obrazovaka.ru</a> только в образовательных целях </p>  </center>
+        </div>
 
 
         <!--скрипт активируется при загрузке страницы-->
@@ -77,11 +87,11 @@
             $(window).load(function () {
 
                 var controller = new ScientistController();  // создание объекта ScientistController
-                controller.getAllScientistViewButtons(); //вызов его функции getAllScientistViewButtons()
+                controller.getAllScientistsViewButtons(); //вызов его функции getAllScientistViewButtons()
 
 
                 var controllerBiography = new BiographyController(); // создание объекта BiographyController()
-                controllerBiography.getBiographyByScientistIdViewList(1); // вызов биографии 1ого ученого в <div id="biography" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                //controllerBiography.getBiographyByScientistIdViewList(1); // вызов биографии 1ого ученого в <div id="biography" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
             });
         </script>
     </body>

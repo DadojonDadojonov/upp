@@ -27,12 +27,12 @@
             <div class="navbar navbar-default navbar-static-top" role="navigation">
                 <div class="container">                    
                     <a class="navbar-brand" href="http://localhost:8084/UppBio/">Биография</a>
-                </div>
-                <div class="navbar-collapse collapse">
+                    <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="http://localhost:8084/UppBio/">Главная</a></li>    
                     </ul>
                 </div>
+                </div>                
             </div>
         </div>
 
@@ -48,7 +48,9 @@
                 </div>
             </div>
         </div> 
-
+        <div id="footer" class="container">                           
+            <center> <p>Весь материал взят с сайта <a href="http://obrazovaka.ru/category/science">obrazovaka.ru</a> только в образовательных целях </p>  </center>
+        </div>
 
         <!-- библиотеки -->
         <script src="../lib/js/jquery.min.js"></script>
@@ -63,11 +65,11 @@
                 return vars;
             }
             var idBio = getUrlVars()["id"];// получаем параметр id стихотворения из адресной строки
-
-            // Используем функцию при загрузке страницы, которая вставляет стихотворение по его id в элемент этой html страницы, где у самого элемента id="oneStih"
+            
+            // Используем функцию при загрузке страницы, которая вставляет стихотворение по его id в элемент этой html страницы, где у самого элемента id="oneBio"
             $(window).load(function () {
                 var controllerBiography = new BiographyController(); // создание объекта BiographyController()
-                controllerBiography.getStihByIdViewList(idBio); // вызов 1 биографии в элемент с id = "oneBio"
+                controllerBiography.getBiographyByIdViewList(idBio); // вызов 1 биографии в элемент с id = "oneBio"
 
             });
         </script>
