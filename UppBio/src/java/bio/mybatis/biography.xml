@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+    
+<mapper namespace="biography">
+    
+    <resultMap id = "result" type = "bio.model.Biography"> 
+        <result property = "id" column = "id"/> 
+        <result property = "country" column = "country"/>  
+        <result property = "bio" column = "bio"/> 
+        <result property = "dob" column = "dob"/> 
+        <result property = "dod" column = "dod"/>
+        <result property = "id_Scientist" column = "id_Scientist"/> 
+    </resultMap> 
+
+    <select id = "selectAll" resultMap = "result"> 
+        SELECT * FROM s_biography;  
+    </select> 
+
+    <select id = "selectById" parameterType = "int" resultMap = "result"> 
+        SELECT * FROM s_biography WHERE id = #{id}; 
+    </select> 
+ 
+    <delete id = "deleteById" parameterType = "int"> 
+        DELETE from s_biography WHERE id = #{id}; 
+    </delete>
+
+    <insert id = "insert" parameterType = "bio.model.Biography"> 
+        INSERT INTO s_biography (country, bio, dob, dod, id_Scientist)   
+        VALUES (#{country}, #{bio}, #{dob}, #{dod}, #{id_Scientist});     
+    </insert>
+
+    <update id = "update" parameterType = "bio.model.Biography"> 
+        UPDATE s_biography SET 
+        country = #{country}, 
+        bio = #{bio}, 
+        dob= #{dob},
+        dod= #{dod},
+        id_Scientist= #{id_Scientist}
+        WHERE id = #{id}; 
+    </update> 
+</mapper>
