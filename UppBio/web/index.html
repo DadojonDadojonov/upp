@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -18,9 +18,11 @@
         <!-- service -->
         <script src="service/ScientistService.js"></script>
         <script src="service/BiographyService.js"></script>
+        <script src="service/AddNewService.js"></script>
         <!-- controllers -->
         <script src="controllers/ScientistController.js"></script>
         <script src="controllers/BiographyController.js"></script>
+        <script src="controllers/AddNewController.js"></script>
 
         <!-- создает события scientistClick и biographyClick, которые потом загружаются из контроллера html текст-->
         <script>
@@ -36,6 +38,12 @@
                 //переход с передачей параметров на get;
                 document.location.replace("/UppBio/view/biography.html?id=" + id);
             }
+            function addNew()
+            {
+                
+                var contrAddNew = new AddNewController();                
+                contrAddNew.addNewSci_biogr();
+            }
         </script>
 
 
@@ -48,7 +56,7 @@
             <div class="navbar navbar-default navbar-static-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">                        
-                        <a class="navbar-brand" href="">Ученые</a>
+                        <a class="navbar-brand" href="">Scientist</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -75,6 +83,15 @@
         </div> 
         <br>
         <br>
+        <!-- Добавить нового ученого и его биографию -->
+        <div><input type="text" id="Sci_id" placeholder="id ученого"></div>
+        <div><input type="text" id="Sci_name" placeholder="Имя ученого"></div>
+        <div><input type="text" id="Sci_country" placeholder="Страна ученого"></div>
+        <div><input type="date" id ="dob"> Дата рождения</div> 
+        <div><input type="date" id ="dod"> Дата смерти</div>
+        <div><textarea cols="20"  id="Sci_bio" placeholder="Введите биографию ученого"></textarea> 
+            <button id="add" onclick="addNew()">Добавить</button>
+        </div>
         <br>
         <br>
         <div id="footer" class="container">                           
@@ -91,7 +108,8 @@
 
 
                 var controllerBiography = new BiographyController(); // создание объекта BiographyController()
-                //controllerBiography.getBiographyByScientistIdViewList(1); // вызов биографии 1ого ученого в <div id="biography" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                
+
             });
         </script>
     </body>
